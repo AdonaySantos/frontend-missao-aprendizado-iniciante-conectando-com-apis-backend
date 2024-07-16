@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import Card from "./components/Card/Card";
 
@@ -30,7 +31,7 @@ function App() {
 
   // const devmons = [java, kotlin, android, c, cplusplus];
 
-  const devmons = []
+  const [devmons, setDevmons] = useState([])
 
   async function fetchData() {
     const apiUrl = 'https://backend-integrar-com-frontend-o4wm.onrender.com/personagem'
@@ -39,10 +40,12 @@ function App() {
 
     const data = await response.json()
 
-    console.log(43, data)
+    setDevmons(data)
   }
 
-  fetchData()
+  useEffect(function () {
+    fetchData()
+  }, [])
 
   return (
     <>
